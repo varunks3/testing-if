@@ -31,7 +31,7 @@ jobs:
       env:
         VM_NAME: ${{ github.event.client_payload.vm_name }}
       run: |
-        if [[ `${{ github.event.client_payload.vm_name }}` == 'VM1' ]]; then
+        if [[ "VM1" == "VM1" ]]; then
           echo 'inside if'
           echo "${VM_NAME}"
           cd ./VirtualMachine1
