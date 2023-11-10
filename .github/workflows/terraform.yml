@@ -40,4 +40,8 @@ jobs:
           terraform apply -var "vm_name=${VM_NAME}" -auto-approve
         else
           echo "inside else"
+          cd ./VirtualMachine3
+          terraform init
+          terraform plan -var "vm_name=${VM_NAME}"
+          terraform apply -var "vm_name"=${VM_NAME}" -auto-approve
         fi
