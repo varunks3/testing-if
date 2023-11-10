@@ -35,6 +35,10 @@ jobs:
       run: |
         if [[ "${{ github.event.client_payload.vm_name }}" == "VM1" ]]; then
           echo "inside if"
+          echo "${VM_NAME}"
+          cd ./VirtualMachine1
+          terraform init
+
         else
           echo "inside else"
         fi
