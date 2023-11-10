@@ -46,35 +46,3 @@ jobs:
           terraform apply -var "vm_name"=${VM_NAME}" -auto-approve
         fi
 
-    - name: Creating VM2
-      env:
-        VM2_NAME: ${{ github.event.client_payload.vm2_name }}
-      run: |
-        if [[ "${{ github.event.client_payload.vm2_name }}" == "sql" ]]; then
-          echo "inside if"
-          cd ./SQLManagedInstance
-          terraform init
-          terraform plan -var "vm_name=${VM2_NAME}"
-          terraform apply -var "vm_name=${VM2_NAME}" -auto-approve
-        else
-          cd ./VirtualMachine2
-          terraform init
-          terraform plan -var "vm_name=${VM2_NAME}"
-          terraform apply -var "vm_name=${VM2_NAME}" -auto-approve
-        fi
-
-    - name: Vnet Peering
-      env:
-        VM2_NAME: ${{ github.event.client_payload.vm2_name }}
-      run: |
-        if [[ "${{ github.event.client_payload.vm2_name }}" == "sql" ]]; then
-          cd ./VnetPeering
-          terraform init
-          terraform plan -var "vnet1_name=vm3_vnet" -var "vnet2_name=sql-vnet"
-          terraform apply -var "vnet1_name=vm3_vnet" -var "vnet2_name=sql-vnet" -auto-approve
-        else
-          cd ./VnetPeering
-          terraform init
-          terraform plan
-          terraform apply -auto-approve
-        fi
