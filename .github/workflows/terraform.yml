@@ -38,7 +38,7 @@ jobs:
           echo "${VM_NAME}"
           cd ./VirtualMachine1
           terraform init
-
+          terraform plan -var "vm_name=${VM_NAME}"
         else
           echo "inside else"
         fi
