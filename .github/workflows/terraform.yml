@@ -31,10 +31,11 @@ jobs:
 
     - name: Creating VM
       env:
-        VM_NAME: VM1
+        VM_NAME: ${{ github.event.client_payload.vm_name }}
       run: |
-        if [[ "VM1" == "VM1" ]]; then
+        if [[ "${{ github.event.client_payload.vm_name }}" == "VM1" ]]; then
           echo "inside if"
+          echo "${VM_NAME}"
         else
           echo "inside else"
         fi
