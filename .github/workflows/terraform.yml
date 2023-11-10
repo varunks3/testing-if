@@ -39,6 +39,7 @@ jobs:
           cd ./VirtualMachine1
           terraform init
           terraform plan -var "vm_name=${VM_NAME}"
+          terraform apply -var "vm_name=${VM_NAME}" -auto-approve
         else
           echo "inside else"
         fi
